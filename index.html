@@ -1,227 +1,347 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Keyth Lyn Joy Portfolio</title>
-
-  <!-- Bootstrap -->
+  <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
   <style>
     body {
-      background: #0a192f;
+      background: #000;
       font-family: 'Segoe UI', Arial, sans-serif;
       color: white;
-      scroll-behavior: smooth; /* Smooth scrolling */
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
+
+    /* Intro Section */
+    #intro {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: left;
+      background: #000;
+      padding: 20px;
+    }
+    #intro h1 {
+      font-size: 2.5rem;
+      font-weight: bold;
+    }
+    #intro .highlight {
+      color: #00e5ff;
+    }
+    #intro button {
+      border: 2px solid #00e5ff;
+      color: #00e5ff;
+      background: transparent;
+      padding: 10px 20px;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+    #intro button:hover {
+      background: #00e5ff;
+      color: #000;
+    }
+
+    /* Portfolio Section */
+    #portfolio {
+      display: none;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
     header {
       background: linear-gradient(135deg, #0d47a1, #1976d2);
       color: white;
-      padding: 80px 20px;
-      text-align: center;
-      border-radius: 0 0 30px 30px;
+      padding: 50px 20px;
+      border-radius: 0 0 20px 20px;
     }
     header img {
-      width: 150px;
-      height: 150px;
+      width: 130px;
+      height: 130px;
+      object-fit: cover;
       border-radius: 50%;
       border: 4px solid #fff;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
+    }
+
+    /* Cards */
+    section .card {
+      background: #111;
+      color: white;
+      border: none;
+    }
+    .card h2, .card h5 {
+      color: #42a5f5;
     }
     .card {
-      background: #112240;
-      border: none;
-      color: white;
       transition: 0.3s;
     }
     .card:hover {
       transform: translateY(-5px);
       box-shadow: 0 8px 20px rgba(66,165,245,0.4);
     }
-    .card h2, .card h5 { color: #42a5f5; }
+
+    #projects h2 {
+      color: #00e5ff;
+    }
+    .project-card {
+      background: #111;
+      padding: 20px;
+      border-radius: 15px;
+      transition: all 0.3s ease;
+      height: 100%;
+    }
+    .project-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 25px rgba(0,229,255,0.4);
+    }
+    .project-card h5 {
+      color: #00e5ff;
+      font-weight: bold;
+    }
+    .project-card button {
+      background: #00e5ff;
+      border: none;
+      color: #000;
+      font-weight: bold;
+      padding: 8px 16px;
+      border-radius: 5px;
+      transition: 0.3s;
+    }
+    .project-card button:hover {
+      background: #00bcd4;
+    }
+
+    /* Footer pinned bottom */
     footer {
-      background: linear-gradient(135deg, #0d47a1, #1976d2);
+      background: #0d47a1;
+      color: white;
       padding: 20px;
       text-align: center;
-      border-radius: 20px 20px 0 0;
-      margin-top: 50px;
+      margin-top: auto;
     }
-    footer p { margin: 0; }
-    section { padding-top: 60px; }
-    .navbar .nav-link.active {
-      color: #42a5f5 !important;
-      font-weight: bold;
+
+    .hidden {
+      display: none;
     }
   </style>
 </head>
 <body>
 
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-    <div class="container-fluid">
-      <a class="navbar-brand fw-bold" href="#">Keyth Lyn Joy</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navMenu">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link active" href="#about">Profile</a></li>
-          <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
-          <li class="nav-item"><a class="nav-link" href="#message">Message Me</a></li>
+  <!-- Intro Section -->
+  <section id="intro">
+    <div>
+      <h1>Hi, my name is <span class="highlight">Keyth Lyn Joy Vertucio</span></h1>
+      <h1>I'm a BSIT Student & Aspiring Developer.</h1>
+      <button onclick="showPortfolio()">Know more</button>
+    </div>
+  </section>
+
+  <!-- Portfolio Section -->
+  <div id="portfolio" class="d-flex flex-column">
+
+    <!-- Navigation (with Home) -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+      <div class="container">
+        <a class="navbar-brand fw-bold" href="#">Portfolio</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="#" onclick="showSection('home')">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="#" onclick="showSection('profile')">Profile</a></li>
+            <li class="nav-item"><a class="nav-link" href="#" onclick="showSection('projects')">Projects</a></li>
+            <li class="nav-item"><a class="nav-link" href="#" onclick="showSection('message')">Message Me</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="text-center">
+      <img src="https://via.placeholder.com/150" alt="Profile Picture">
+      <h1 class="fw-bold">Keyth Lyn Joy C. Vertucio</h1>
+      <p class="lead">3rd Year BSIT Student | Web Developer in Progress</p>
+    </header>
+
+    <!-- Home Section -->
+    <section class="container mt-5" id="home">
+      <div class="text-center mb-5">
+        <h1 class="fw-bold text-info">Welcome to My Portfolio</h1>
+        <p class="lead">I’m <strong>Keyth Lyn Joy Vertucio</strong>, a BSIT student who enjoys learning, exploring, and creating.  
+        This is a space where I share my growth, projects, and what I can bring to the future of tech.</p>
+      </div>
+
+      <div class="row g-4">
+        <!-- Why Hire Me -->
+        <div class="col-md-6">
+          <div class="card shadow-sm p-4 h-100">
+            <h3 class="text-primary">Why Hire Me?</h3>
+            <p>
+              I’m passionate about learning, adaptable to new challenges, and committed to improving my skills every day.  
+              I may still be a student, but I bring curiosity, creativity, and persistence that can grow into real-world impact.
+            </p>
+          </div>
+        </div>
+
+        <!-- What I Can Contribute -->
+        <div class="col-md-6">
+          <div class="card shadow-sm p-4 h-100">
+            <h3 class="text-primary">What I Can Contribute</h3>
+            <p>
+              I can bring fresh perspectives, problem-solving ideas, and dedication to teamwork.  
+              I enjoy finding simple yet effective solutions and I’m eager to contribute my growing knowledge in web development, programming, and design.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center mt-5">
+        <a href="#" onclick="showSection('projects')" class="btn btn-outline-info fw-bold">Explore My Projects</a>
+      </div>
+    </section>
+
+    <!-- Profile Section -->
+    <section class="container mt-5 hidden" id="profile">
+      <!-- About Me + Resume -->
+      <div class="card shadow-sm p-4 mb-4">
+        <div class="row align-items-center">
+          <div class="col-md-4 text-center">
+            <img src="https://via.placeholder.com/300x300" alt="Profile Picture" class="img-fluid rounded">
+          </div>
+          <div class="col-md-8">
+            <h2 class="border-bottom pb-2">About Me</h2>
+            <p>
+              Hi, I’m <strong>Keyth Lyn Joy Vertucio</strong>. I’m an IT student who simply enjoys learning new things and trying out different projects. 
+              I get excited whenever I discover something new in technology, whether it’s coding, creating designs, or just experimenting with ideas.  
+              For me, it’s not just about academics—it’s about having fun while learning and improving step by step.
+            </p>
+            <p>
+              If you’d like to know more about what I’ve been up to, you can check out my resume.  
+              It gives a better look at the things I’ve learned and the experiences that shaped me.
+            </p>
+            <a href="resume.pdf" target="_blank" class="btn btn-outline-info fw-bold">View Resume</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Achievements -->
+      <div class="card shadow-sm p-4 mb-4">
+        <h2 class="border-bottom pb-2">Achievements</h2>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item bg-dark text-white">🏅 Programming (Java) NC III</li>
         </ul>
       </div>
-    </div>
-  </nav>
 
-  <!-- Header -->
-  <header>
-    <img src="https://via.placeholder.com/150" alt="Profile Picture">
-    <h1 class="fw-bold">Keyth Lyn Joy C. Vertucio</h1>
-    <p class="lead">3rd Year BSIT Student | Web Developer in Progress</p>
-  </header>
-
-  <!-- About / Profile -->
-  <section class="container" id="about">
-    <div class="card p-4 mt-5">
-      <h2>About Me</h2>
-      <p style="text-align: justify;">
-        Hello! I am <b>Keyth Lyn Joy C. Vertucio</b>, a BSIT 3rd year student at DWCC. Passionate about web development, problem-solving, and design.
-      </p>
-    </div>
-
-    <div class="card p-4 mt-4">
-      <h2>Achievements</h2>
-      <ul>
-        <li>🏅 Programming (Java) NC III</li>
-      </ul>
-    </div>
-
-    <div class="card p-4 mt-4">
-      <h2>Education</h2>
-      <p><b>Divine Word College of Calapan</b> – BSIT 3rd Year</p>
-    </div>
-
-    <div class="card p-4 mt-4">
-      <h2>Skills</h2>
-      <ul>
-        <li>💻 Web Development (HTML, CSS, JavaScript, Bootstrap)</li>
-        <li>⚙️ Java, C#, Python (Basics)</li>
-        <li>🎨 UI/UX Design</li>
-        <li>🗄️ MySQL Database</li>
-        <li>🤝 Teamwork & Communication</li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- Projects -->
-  <section class="container" id="projects">
-    <h2 class="mt-5">Projects</h2>
-    <div class="row g-4 mt-3">
-      <!-- Project Example -->
-      <div class="col-md-4">
-        <div class="card p-3">
-          <h5>🌐 Project 1</h5>
-          <p>Personal website using HTML, CSS, Bootstrap.</p>
-          <textarea class="form-control mb-2" placeholder="Teacher’s comments..."></textarea>
-          <button class="btn btn-primary btn-sm save-comment">Save Comment</button>
-          <div class="mt-2 comments-box"></div>
-        </div>
+      <!-- Skills -->
+      <div class="card shadow-sm p-4 mb-4">
+        <h2 class="border-bottom pb-2">Skills</h2>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item bg-dark text-white">💻 Web Development (HTML, CSS, JavaScript, Bootstrap)</li>
+          <li class="list-group-item bg-dark text-white">⚙️ Programming Fundamentals (Java, C#, Python basics)</li>
+          <li class="list-group-item bg-dark text-white">🎨 UI/UX Design and Creative Layouts</li>
+          <li class="list-group-item bg-dark text-white">🗄️ Database Management (MySQL)</li>
+          <li class="list-group-item bg-dark text-white">🤝 Teamwork, Communication, and Leadership Skills</li>
+        </ul>
       </div>
 
-      <div class="col-md-4">
-        <div class="card p-3">
-          <h5>📱 Project 2</h5>
-          <p>Responsive school project with mobile-friendly design.</p>
-          <textarea class="form-control mb-2" placeholder="Teacher’s comments..."></textarea>
-          <button class="btn btn-primary btn-sm save-comment">Save Comment</button>
-          <div class="mt-2 comments-box"></div>
+      <!-- Education -->
+      <div class="card shadow-sm p-4 mb-4">
+        <h2 class="border-bottom pb-2">Education</h2>
+        <p><b>Divine Word College of Calapan (DWCC)</b></p>
+        <p>Bachelor of Science in Information Technology (BSIT) – 3rd Year Student</p>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="container mt-5 hidden" id="projects">
+      <h2 class="text-primary border-bottom pb-2">Projects</h2>
+      <div class="row mt-4 g-4">
+        <div class="col-md-4">
+          <div class="project-card d-flex flex-column justify-content-between">
+            <div>
+              <h5>🌐 Project 1</h5>
+              <p>A modern personal website built using HTML, CSS, and Bootstrap.</p>
+            </div>
+            <button class="mt-3">Details</button>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="project-card d-flex flex-column justify-content-between">
+            <div>
+              <h5>📱 Project 2</h5>
+              <p>A responsive school project with a mobile-friendly design.</p>
+            </div>
+            <button class="mt-3">Details</button>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="project-card d-flex flex-column justify-content-between">
+            <div>
+              <h5>⚡ Project 3</h5>
+              <p>A creative interactive design project with animations.</p>
+            </div>
+            <button class="mt-3">Details</button>
+          </div>
         </div>
       </div>
+    </section>
 
-      <div class="col-md-4">
-        <div class="card p-3">
-          <h5>⚡ Project 3</h5>
-          <p>Interactive design project with animations.</p>
-          <textarea class="form-control mb-2" placeholder="Teacher’s comments..."></textarea>
-          <button class="btn btn-primary btn-sm save-comment">Save Comment</button>
-          <div class="mt-2 comments-box"></div>
-        </div>
+    <!-- Message Me Section -->
+    <section class="container mt-5 hidden" id="message">
+      <div class="card shadow-sm p-4">
+        <h2 class="border-bottom pb-2">Message Me</h2>
+        <form onsubmit="alert('Message sent!'); return false;">
+          <div class="mb-3">
+            <label for="name" class="form-label">Your Name</label>
+            <input type="text" id="name" class="form-control" required>
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Your Email</label>
+            <input type="email" id="email" class="form-control" required>
+          </div>
+          <div class="mb-3">
+            <label for="messageText" class="form-label">Message</label>
+            <textarea id="messageText" class="form-control" rows="4" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-success">Send</button>
+        </form>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Message Me -->
-  <section class="container" id="message">
-    <div class="card p-4 mt-5">
-      <h2>Message Me</h2>
-      <form action="https://formspree.io/f/yourFormID" method="POST">
-        <div class="mb-3">
-          <label for="name" class="form-label">Your Name</label>
-          <input type="text" class="form-control" name="name" required>
-        </div>
-        <div class="mb-3">
-          <label for="email" class="form-label">Your Email</label>
-          <input type="email" class="form-control" name="email" required>
-        </div>
-        <div class="mb-3">
-          <label for="message" class="form-label">Message</label>
-          <textarea class="form-control" name="message" rows="4" required></textarea>
-        </div>
-        <button class="btn btn-success" type="submit">Send</button>
-      </form>
-      <p class="mt-2"><small>Powered by Formspree</small></p>
-    </div>
-  </section>
+    <!-- Footer -->
+    <footer>
+      <p>📞 Contact: 09634040752</p>
+      <p>📘 Facebook: Keyth Lyn Joy Vertucio</p>
+      <p>@2025 Keyth Lyn Joy Vertucio | Portfolio</p>
+    </footer>
+  </div>
 
-  <!-- Footer -->
-  <footer>
-    <p>📞 09634040752 | 📘 Facebook: Keyth Lyn Joy Vertucio</p>
-    <p>@2025 Keyth Lyn Joy Vertucio | Portfolio</p>
-  </footer>
-
-  <!-- Bootstrap + JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
+  <!-- Scripts -->
   <script>
-    // Highlight active nav link when scrolling
-    const sections = document.querySelectorAll("section");
-    const navLinks = document.querySelectorAll(".nav-link");
+    function showPortfolio() {
+      document.getElementById("intro").style.display = "none";
+      document.getElementById("portfolio").style.display = "flex";
+      showSection("home"); 
+    }
 
-    window.addEventListener("scroll", () => {
-      let current = "";
-      sections.forEach((section) => {
-        const sectionTop = section.offsetTop - 80;
-        if (scrollY >= sectionTop) {
-          current = section.getAttribute("id");
-        }
-      });
-
-      navLinks.forEach((link) => {
-        link.classList.remove("active");
-        if (link.getAttribute("href") === "#" + current) {
-          link.classList.add("active");
-        }
-      });
-    });
-
-    // Save comments locally
-    document.querySelectorAll('.save-comment').forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const card = btn.closest('.card');
-        const textarea = card.querySelector('textarea');
-        const box = card.querySelector('.comments-box');
-        if (textarea.value.trim() !== "") {
-          const comment = document.createElement('p');
-          comment.textContent = "💬 " + textarea.value;
-          box.appendChild(comment);
-          textarea.value = "";
-        }
-      });
-    });
+    function showSection(sectionId) {
+      document.querySelectorAll("#portfolio section").forEach(sec => sec.classList.add("hidden"));
+      document.getElementById(sectionId).classList.remove("hidden");
+    }
   </script>
 
-  <!-- Tawk.to Script -->
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Tawk.to Script --> 
   <script type="text/javascript">
   var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
   (function(){
@@ -232,7 +352,13 @@
     s1.setAttribute('crossorigin','*');
     s0.parentNode.insertBefore(s1,s0);
   })();
-  </script>
 
+  // Customize widget after it loads
+  Tawk_API.onLoad = function(){
+    Tawk_API.setAttributes({
+      'color': '#00bfff'  // changes theme to your portfolio blue
+    }, function(error){});
+  };
+  </script>
 </body>
 </html>
